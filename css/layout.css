@@ -1,4 +1,8 @@
-body { background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: var(--font-sans); margin: 0; }
+body { background: hsl(var(--background)); 
+  color: hsl(var(--foreground)); 
+  font-family: var(--font-sans); 
+  margin: 0; 
+}
 
 .dashboard {
   display: flex;
@@ -9,7 +13,7 @@ body { background: hsl(var(--background)); color: hsl(var(--foreground)); font-f
   width: 250px;
   background: hsl(var(--sidebar));
   color: hsl(var(--sidebar-foreground));
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .main-content {

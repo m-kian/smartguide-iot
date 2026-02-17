@@ -1,14 +1,24 @@
 :root {
   --background: 0 0% 100%;
-  --foreground: 210 25% 7.8431%;
-  --primary: 203.8863 88.2845% 53.1373%;
+  --foreground: 0 0% 10%;
+  --sidebar: 220 20% 95%;
+  --sidebar-foreground: 0 0% 10%;
+  --primary: 220 90% 55%;
   --primary-foreground: 0 0% 100%;
-  --radius: 1.3rem;
+  --accent: 280 80% 60%;
+  --accent-foreground: 0 0% 100%;
+  --radius: 8px;
+  --font-sans: "Inter", sans-serif;
 }
 
+/* Dark mode overrides */
 .dark {
-  --background: 0 0% 0%;
-  --foreground: 200 6.6667% 91.1765%;
-  --primary: 203.7736 87.6033% 52.5490%;
-  --primary-foreground: 0 0% 100%;
+  --background: 0 0% 10%;
+  --foreground: 0 0% 95%;
+  --sidebar: 0 0% 15%;
+  --sidebar-foreground: 0 0% 95%;
+  --primary: 220 90% 65%;
+  --primary-foreground: 0 0% 10%;
+  --accent: 280 80% 70%;
+  --accent-foreground: 0 0% 10%;
 }
