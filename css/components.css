@@ -1,0 +1,22 @@
+.btn {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.profile { 
+    text-align: center; 
+    margin-bottom: 1rem; }
+
+.profile img {
+  width: 80px;
+  border-radius: 50%;
+}

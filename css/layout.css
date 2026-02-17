@@ -1,0 +1,26 @@
+body { background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: var(--font-sans); margin: 0; }
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: hsl(var(--sidebar));
+  color: hsl(var(--sidebar-foreground));
+  padding: 1rem;
+}
+
+.main-content {
+  flex: 1;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  padding: 1rem;
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius);
+}
