@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Status - SmartGuide</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/component-pages.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <a href="index.html" class="back-btn" title="Back to Dashboard">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h2 class="dashboard-title">
+        <i class="fas fa-alert-circle"></i> Emergency Status
+      </h2>
+    </div>
+
+    <div class="header-right">
+      <button id="darkModeToggle" class="dark-mode-btn" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="user-menu">
+        <img src="assets/images/profile.jpg" alt="User" class="user-avatar">
+        <div class="dropdown-menu">
+          <div class="user-info">
+            <h3 id="userName">Admin User</h3>
+            <p id="userEmail">admin@smartguide.com</p>
+          </div>
+          <hr>
+          <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="page-container">
+    <main class="component-content">
+      <!-- Page Header -->
+      <section class="page-header">
+        <h1>Emergency Status & Alert System</h1>
+        <p>Monitor and manage emergency events in real-time</p>
+      </section>
+
+      <!-- Current Emergency Status -->
+      <section class="emergency-current">
+        <div class="emergency-big-card" id="emergencyCard">
+          <div class="emergency-status-display safe">
+            <div class="emergency-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="emergency-content">
+              <h2>System Status</h2>
+              <p class="emergency-status-text" id="systemStatus">All Clear</p>
+              <span class="status-timestamp" id="statusTime">Last updated: Just now</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="emergency-actions">
+        <button class="emergency-action-btn critical" onclick="triggerEmergency()">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>Trigger Emergency</span>
+          <small>Call for help immediately</small>
+        </button>
+        <button class="emergency-action-btn warning" onclick="sendAlert()">
+          <i class="fas fa-bell"></i>
+          <span>Send Alert</span>
+          <small>Notify contacts</small>
+        </button>
+        <button class="emergency-action-btn info" onclick="callEmergency()">
+          <i class="fas fa-phone"></i>
+          <span>Call Emergency</span>
+          <small>Dial emergency services</small>
+        </button>
+      </section>
+
+      <!-- Emergency History -->
+      <section class="emergency-history">
+        <h2>Emergency History</h2>
+        <div class="history-timeline">
+          <div class="timeline-item safe" id="item1">
+            <div class="timeline-marker">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Emergency Cleared</h3>
+              <p>User confirmed safe and no medical attention needed</p>
+              <span class="timeline-date">February 19, 2024 - 2:30 PM</span>
+            </div>
+          </div>
+
+          <div class="timeline-item alert" id="item2">
+            <div class="timeline-marker">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Emergency Alert Triggered</h3>
+              <p>User triggered emergency alert from device at coordinates 13.6929°, -89.2182°</p>
+              <span class="timeline-date">February 19, 2024 - 2:15 PM</span>
+            </div>
+          </div>
+
+          <div class="timeline-item info" id="item3">
+            <div class="timeline-marker">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Device Online</h3>
+              <p>Device reconnected and is now online</p>
+              <span class="timeline-date">February 19, 2024 - 1:45 PM</span>
+            </div>
+          </div>
+
+          <div class="timeline-item warning" id="item4">
+            <div class="timeline-marker">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Network Warning</h3>
+              <p>Device experiencing signal strength issues</p>
+              <span class="timeline-date">February 19, 2024 - 12:30 PM</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergency Contacts -->
+      <section class="emergency-contacts">
+        <h2>Emergency Contacts</h2>
+        <div class="contacts-list">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="contact-info">
+              <h4>Primary Guardian</h4>
+              <p>John Doe</p>
+              <span class="contact-phone"><i class="fas fa-phone"></i> +1 (555) 123-4567</span>
+            </div>
+            <div class="contact-actions">
+              <button onclick="callContact(this)" class="action-icon" title="Call">
+                <i class="fas fa-phone"></i>
+              </button>
+              <button onclick="sendMessage(this)" class="action-icon" title="Message">
+                <i class="fas fa-comment"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="contact-info">
+              <h4>Secondary Guardian</h4>
+              <p>Jane Smith</p>
+              <span class="contact-phone"><i class="fas fa-phone"></i> +1 (555) 987-6543</span>
+            </div>
+            <div class="contact-actions">
+              <button onclick="callContact(this)" class="action-icon" title="Call">
+                <i class="fas fa-phone"></i>
+              </button>
+              <button onclick="sendMessage(this)" class="action-icon" title="Message">
+                <i class="fas fa-comment"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon emergency">
+              <i class="fas fa-hospital"></i>
+            </div>
+            <div class="contact-info">
+              <h4>Emergency Services</h4>
+              <p>Medical Dispatch</p>
+              <span class="contact-phone"><i class="fas fa-phone"></i> 911</span>
+            </div>
+            <div class="contact-actions">
+              <button onclick="callContact(this)" class="action-icon emergency" title="Call">
+                <i class="fas fa-phone"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alert Settings -->
+      <section class="alert-settings">
+        <h2>Alert Notifications</h2>
+        <div class="settings-grid">
+          <div class="setting-card">
+            <div class="setting-header">
+              <i class="fas fa-bell"></i>
+              <h4>Emergency Alerts</h4>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span>Enabled</span>
+            </label>
+          </div>
+
+          <div class="setting-card">
+            <div class="setting-header">
+              <i class="fas fa-smartphone"></i>
+              <h4>Push Notifications</h4>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span>Enabled</span>
+            </label>
+          </div>
+
+          <div class="setting-card">
+            <div class="setting-header">
+              <i class="fas fa-envelope"></i>
+              <h4>Email Alerts</h4>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span>Enabled</span>
+            </label>
+          </div>
+
+          <div class="setting-card">
+            <div class="setting-header">
+              <i class="fas fa-volume-up"></i>
+              <h4>Audio Alarm</h4>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span>Enabled</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <section class="action-section">
+        <button class="action-btn primary" onclick="updateContacts()">
+          <i class="fas fa-phone-alt"></i> Update Emergency Contacts
+        </button>
+        <button class="action-btn secondary" onclick="viewFullHistory()">
+          <i class="fas fa-history"></i> Full History
+        </button>
+        <button class="action-btn secondary" onclick="downloadReport()">
+          <i class="fas fa-file-pdf"></i> Download Report
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Navigation to other pages -->
+  <div class="component-nav">
+    <a href="device-status.html" class="nav-item">
+      <i class="fas fa-microchip"></i>
+      <span>Device Status</span>
+    </a>
+    <a href="battery-level.html" class="nav-item">
+      <i class="fas fa-battery-full"></i>
+      <span>Battery Level</span>
+    </a>
+    <a href="emergency-status.html" class="nav-item active">
+      <i class="fas fa-alert-circle"></i>
+      <span>Emergency Status</span>
+    </a>
+    <a href="active-user.html" class="nav-item">
+      <i class="fas fa-user-circle"></i>
+      <span>Active User</span>
+    </a>
+  </div>
+
+  <script src="js/darkmode.js"></script>
+  <script src="js/emergency-status.js"></script>
+</body>
+</html>
