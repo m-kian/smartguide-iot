@@ -99,3 +99,15 @@ function logout() {
   localStorage.removeItem('smartguide_user');
   window.location.href = 'index.html';
 }
+
+function editAvatar() {
+  alert('Avatar upload feature coming soon!');
+}
+
+function viewPrivacy() {
+  alert('Privacy settings window would open here');
+}
+function logout() {
+  localStorage.removeItem('smartguide_user');
+  window.location.href = 'index.html';
+}

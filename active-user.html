@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active User - SmartGuide</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/component-pages.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <a href="index.html" class="back-btn" title="Back to Dashboard">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h2 class="dashboard-title">
+        <i class="fas fa-user-circle"></i> User Profile
+      </h2>
+    </div>
+
+    <div class="header-right">
+      <button id="darkModeToggle" class="dark-mode-btn" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="user-menu">
+        <img src="assets/profile.jpg" alt="User" class="user-avatar">
+        <div class="dropdown-menu">
+          <div class="user-info">
+            <h3 id="userName">Admin User</h3>
+            <p id="userEmail">admin@smartguide.com</p>
+          </div>
+          <hr>
+          <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="page-container">
+    <main class="component-content">
+      <!-- Page Header -->
+      <section class="page-header">
+        <h1>Profile Management</h1>
+        <p>Manage your account, devices, and preferences</p>
+      </section>
+
+      <!-- User Profile Section -->
+      <section class="profile-section">
+        <div class="profile-header">
+          <div class="profile-avatar-large">
+            <img src="assets/profile.jpg" alt="Profile" id="profileImage">
+            <button class="avatar-edit-btn" onclick="editAvatar()">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+          <div class="profile-info">
+            <h2 id="fullName">Admin User</h2>
+            <p id="emailDisplay">admin@smartguide.com</p>
+            <div class="profile-meta">
+              <span class="meta-badge">
+                <i class="fas fa-check-circle"></i> Verified
+              </span>
+              <span class="meta-badge verified-status" id="verificationStatus">
+                <i class="fas fa-shield-alt"></i> Active
+              </span>
+            </div>
+            <div class="profile-actions">
+              <button class="btn-profile" onclick="editProfile()">
+                <i class="fas fa-edit"></i> Edit Profile
+              </button>
+              <button class="btn-profile secondary" onclick="viewPrivacy()">
+                <i class="fas fa-lock"></i> Privacy Settings
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Account Information -->
+      <section class="account-section">
+        <h2>Account Information</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-label">User ID</span>
+            <p class="info-value" id="userId">USER-2024-001</p>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Account Status</span>
+            <p class="info-value">
+              <span class="status-badge active">Active</span>
+            </p>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Member Since</span>
+            <p class="info-value" id="memberSince">January 15, 2024</p>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Last Login</span>
+            <p class="info-value" id="lastLogin">Today at 10:30 AM</p>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Phone</span>
+            <p class="info-value" id="phoneNumber">+503-1234-5678</p>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Location</span>
+            <p class="info-value" id="location">San Salvador, El Salvador</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Connected Devices -->
+      <section class="devices-section">
+        <div class="section-header-with-action">
+          <h2>Connected Devices</h2>
+          <button class="btn-add" onclick="addNewDevice()">
+            <i class="fas fa-plus"></i> Add Device
+          </button>
+        </div>
+        <div class="devices-grid">
+          <!-- Device Card 1 -->
+          <div class="device-card">
+            <div class="device-status-indicator online"></div>
+            <div class="device-icon">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <div class="device-info">
+              <h3>SmartGuide Blindstick</h3>
+              <p class="device-id">DEV-001-SG2024</p>
+              <p class="device-status">Online • Signal: 98%</p>
+            </div>
+            <div class="device-actions">
+              <button class="device-btn" onclick="viewDevice(this)" title="View">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="device-btn" onclick="editDevice(this)" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="device-btn danger" onclick="removeDevice(this)" title="Remove">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Device Card 2 -->
+          <div class="device-card">
+            <div class="device-status-indicator online"></div>
+            <div class="device-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="device-info">
+              <h3>Mobile Companion App</h3>
+              <p class="device-id">DEV-002-APP2024</p>
+              <p class="device-status">Online • iOS 17.2</p>
+            </div>
+            <div class="device-actions">
+              <button class="device-btn" onclick="viewDevice(this)" title="View">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="device-btn" onclick="editDevice(this)" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="device-btn danger" onclick="removeDevice(this)" title="Remove">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Device Card 3 -->
+          <div class="device-card">
+            <div class="device-status-indicator online"></div>
+            <div class="device-icon">
+              <i class="fas fa-watch"></i>
+            </div>
+            <div class="device-info">
+              <h3>Wearable Watch</h3>
+              <p class="device-id">DEV-003-WEAR2024</p>
+              <p class="device-status">Online • Battery: 85%</p>
+            </div>
+            <div class="device-actions">
+              <button class="device-btn" onclick="viewDevice(this)" title="View">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="device-btn" onclick="editDevice(this)" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="device-btn danger" onclick="removeDevice(this)" title="Remove">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Activity -->
+      <section class="activity-history">
+        <h2>Recent Activity</h2>
+        <div class="activity-list">
+          <!-- Activity Item 1 -->
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-sign-in-alt"></i>
+            </div>
+            <div class="activity-content">
+              <p class="activity-title">Login Successful</p>
+              <p class="activity-description">Logged in from Chrome on Windows</p>
+              <span class="activity-time">Today at 10:30 AM</span>
+            </div>
+          </div>
+
+          <!-- Activity Item 2 -->
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="activity-content">
+              <p class="activity-title">Password Changed</p>
+              <p class="activity-description">Your password was updated successfully</p>
+              <span class="activity-time">February 20, 2024 at 3:45 PM</span>
+            </div>
+          </div>
+
+          <!-- Activity Item 3 -->
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <div class="activity-content">
+              <p class="activity-title">Device Connected</p>
+              <p class="activity-description">SmartGuide Blindstick paired successfully</p>
+              <span class="activity-time">February 19, 2024 at 2:15 PM</span>
+            </div>
+          </div>
+
+          <!-- Activity Item 4 -->
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <div class="activity-content">
+              <p class="activity-title">Settings Updated</p>
+              <p class="activity-description">Notification preferences changed</p>
+              <span class="activity-time">February 18, 2024 at 11:22 AM</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Preferences & Settings -->
+      <section class="preferences-section">
+        <h2>Preferences</h2>
+        <div class="preferences-grid">
+          <!-- Notification Settings -->
+          <div class="preference-card">
+            <div class="preference-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <div class="preference-content">
+              <h3>Notifications</h3>
+              <p>Manage notification preferences</p>
+            </div>
+            <button class="preference-btn" onclick="notificationSettings()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Privacy & Security -->
+          <div class="preference-card">
+            <div class="preference-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="preference-content">
+              <h3>Privacy & Security</h3>
+              <p>Control your privacy settings</p>
+            </div>
+            <button class="preference-btn" onclick="privacySettings()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Change Password -->
+          <div class="preference-card">
+            <div class="preference-icon">
+              <i class="fas fa-key"></i>
+            </div>
+            <div class="preference-content">
+              <h3>Change Password</h3>
+              <p>Update your account password</p>
+            </div>
+            <button class="preference-btn" onclick="changePassword()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Data & Privacy -->
+          <div class="preference-card">
+            <div class="preference-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div class="preference-content">
+              <h3>Download Your Data</h3>
+              <p>Export your personal data</p>
+            </div>
+            <button class="preference-btn" onclick="downloadData()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Activity Log -->
+          <div class="preference-card">
+            <div class="preference-icon">
+              <i class="fas fa-history"></i>
+            </div>
+            <div class="preference-content">
+              <h3>Activity Log</h3>
+              <p>View complete activity history</p>
+            </div>
+            <button class="preference-btn" onclick="viewActivity()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Delete Account -->
+          <div class="preference-card danger">
+            <div class="preference-icon">
+              <i class="fas fa-trash-alt"></i>
+            </div>
+            <div class="preference-content">
+              <h3>Delete Account</h3>
+              <p>Permanently delete your account</p>
+            </div>
+            <button class="preference-btn danger" onclick="deleteAccount()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <section class="action-section">
+        <button class="action-btn primary" onclick="saveProfile()">
+          <i class="fas fa-save"></i> Save Changes
+        </button>
+        <button class="action-btn secondary" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Navigation to other pages -->
+  <div class="component-nav">
+    <a href="device-status.html" class="nav-item">
+      <i class="fas fa-microchip"></i>
+      <span>Device Status</span>
+    </a>
+    <a href="battery-level.html" class="nav-item">
+      <i class="fas fa-battery-full"></i>
+      <span>Battery Level</span>
+    </a>
+    <a href="emergency-status.html" class="nav-item">
+      <i class="fas fa-alert-circle"></i>
+      <span>Emergency Status</span>
+    </a>
+    <a href="active-user.html" class="nav-item active">
+      <i class="fas fa-user-circle"></i>
+      <span>Active User</span>
+    </a>
+  </div>
+
+  <script src="js/darkmode.js"></script>
+  <script src="js/active-user.js"></script>
+</body>
+</html>
